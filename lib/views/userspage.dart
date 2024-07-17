@@ -1,5 +1,5 @@
-import 'package:collegeapp/adminlogin.dart';
-import 'package:collegeapp/student_login.dart';
+import 'package:collegeapp/views/adminlogin.dart';
+import 'package:collegeapp/views/student_login.dart';
 import 'package:flutter/material.dart';
 
 class UsersPage extends StatefulWidget {

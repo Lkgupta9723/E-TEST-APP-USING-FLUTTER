@@ -1,20 +1,43 @@
-import 'package:collegeapp/detailpage.dart';
+import 'package:collegeapp/views/detailpage.dart';
+import 'package:collegeapp/views/studentloginpage.dart';
 import 'package:flutter/material.dart';
 
-class StudentLoginPage extends StatefulWidget {
-  const StudentLoginPage({super.key});
+class StudentLogin extends StatefulWidget {
+  const StudentLogin({super.key});
 
   @override
-  State<StudentLoginPage> createState() => _StudentLoginPageState();
+  State<StudentLogin> createState() => _StudentLoginState();
 }
 
-TextEditingController checkemail = TextEditingController();
-TextEditingController checkpassword = TextEditingController();
+TextEditingController email = TextEditingController();
+TextEditingController password = TextEditingController();
 
-class _StudentLoginPageState extends State<StudentLoginPage> {
+class _StudentLoginState extends State<StudentLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'If you are already a user?',
+            style: TextStyle(
+                fontWeight: FontWeight.w400, fontSize: 14, color: Colors.grey),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const StudentLoginPage()));
+              },
+              child: const Text(
+                'Login',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.blue),
+              ))
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -26,7 +49,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                 onChanged: (v) {
                   setState(() {});
                 },
-                controller: checkemail,
+                controller: email,
                 style: const TextStyle(fontSize: 16),
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
@@ -52,7 +75,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                 onChanged: (v) {
                   setState(() {});
                 },
-                controller: checkpassword,
+                controller: password,
                 style: const TextStyle(fontSize: 16),
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
@@ -86,7 +109,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                     borderRadius: BorderRadius.circular(10)),
                 child: const Center(
                   child: Text(
-                    'Login',
+                    'SignUp',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
