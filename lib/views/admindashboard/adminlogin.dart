@@ -1,4 +1,4 @@
-import "package:collegeapp/views/adminfirstpage.dart";
+import "package:collegeapp/views/admindashboard/adminfirstpage.dart";
 import "package:flutter/material.dart";
 
 class AdminLogin extends StatefulWidget {

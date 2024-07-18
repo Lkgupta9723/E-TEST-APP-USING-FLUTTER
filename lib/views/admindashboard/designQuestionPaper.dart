@@ -1,5 +1,9 @@
-import 'package:collegeapp/views/adminfirstpage.dart';
+import 'package:collegeapp/controllers/question_controller.dart';
+import 'package:collegeapp/views/admindashboard/adminfirstpage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class design_question_paper extends StatefulWidget {
@@ -13,25 +17,7 @@ TextEditingController testName = TextEditingController();
 TextEditingController question_count = TextEditingController();
 
 class _design_question_paperState extends State<design_question_paper> {
-  var hour = 0;
-  var min = 0;
-  var startDate = DateTime.now();
-
-  // void dateTimePickerWidget(BuildContext context) {
-  //   return DatePicker.showDatePicker(
-  //     context,
-  //     dateFormat: 'dd MMMM yyyy HH:mm',
-  //     initialDateTime: DateTime.now(),
-  //     minDateTime: DateTime(2000),
-  //     maxDateTime: DateTime(3000),
-  //     onMonthChangeStartWithFirstDate: true,
-  //     onConfirm: (dateTime, List<int> index) {
-  //       DateTime selectdate = dateTime;
-  //       final selIOS = DateFormat('dd-MMM-yyyy - HH:mm').format(selectdate);
-  //       print(selIOS);
-  //     },
-  //   );
-  // }
+  final QuestionController questionController = Get.put(QuestionController());
 
   @override
   Widget build(BuildContext context) {
@@ -143,27 +129,27 @@ class _design_question_paperState extends State<design_question_paper> {
                 const SizedBox(
                   width: 10,
                 ),
-                NumberPicker(
-                  minValue: 0,
-                  maxValue: 12,
-                  value: hour,
-                  itemHeight: 30,
-                  itemWidth: 40,
-                  textStyle: const TextStyle(color: Colors.white30),
-                  selectedTextStyle:
-                      const TextStyle(color: Colors.white, fontSize: 22),
-                  zeroPad: true,
-                  infiniteLoop: true,
-                  decoration: const BoxDecoration(
-                    border: Border(
-                        top: BorderSide(color: Colors.white),
-                        bottom: BorderSide(color: Colors.white)),
+                Obx(
+                  () => NumberPicker(
+                    minValue: 0,
+                    maxValue: 12,
+                    value: questionController.Hour.value,
+                    itemHeight: 30,
+                    itemWidth: 40,
+                    textStyle: const TextStyle(color: Colors.white30),
+                    selectedTextStyle:
+                        const TextStyle(color: Colors.white, fontSize: 22),
+                    zeroPad: true,
+                    infiniteLoop: true,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                          top: BorderSide(color: Colors.white),
+                          bottom: BorderSide(color: Colors.white)),
+                    ),
+                    onChanged: (value) {
+                      questionController.Hour.value = value;
+                    },
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      hour = value;
-                    });
-                  },
                 ),
                 const SizedBox(
                   width: 15,
@@ -182,49 +168,33 @@ class _design_question_paperState extends State<design_question_paper> {
                 const SizedBox(
                   width: 10,
                 ),
-                NumberPicker(
-                    minValue: 0,
-                    maxValue: 59,
-                    value: min,
-                    itemHeight: 30,
-                    itemWidth: 40,
-                    textStyle: const TextStyle(color: Colors.white30),
-                    selectedTextStyle:
-                        const TextStyle(color: Colors.white, fontSize: 22),
-                    zeroPad: true,
-                    infiniteLoop: true,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                          top: BorderSide(color: Colors.white),
-                          bottom: BorderSide(color: Colors.white)),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        min = value;
-                      });
-                    }),
+                Obx(
+                  () => NumberPicker(
+                      minValue: 0,
+                      maxValue: 59,
+                      value: questionController.Min.value,
+                      itemHeight: 30,
+                      itemWidth: 40,
+                      textStyle: const TextStyle(color: Colors.white30),
+                      selectedTextStyle:
+                          const TextStyle(color: Colors.white, fontSize: 22),
+                      zeroPad: true,
+                      infiniteLoop: true,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                            top: BorderSide(color: Colors.white),
+                            bottom: BorderSide(color: Colors.white)),
+                      ),
+                      onChanged: (value) {
+                        questionController.Min.value = value;
+                      }),
+                ),
                 const SizedBox(
                   width: 10,
                 )
               ],
             ),
           ),
-          // const SizedBox(
-          //   height: 15,
-          // ),
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 20),
-          //   child: Text(
-          //     "Start Date and time",
-          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          //   ),
-          // ),
-          //    ElevatedButton(
-          //   onPressed: () {
-          //     dateTimePickerWidget(context);
-          //   },
-          //   child: Text('Pick Date-Time'),
-          // ),
           const Spacer(),
           Center(
             child: Padding(

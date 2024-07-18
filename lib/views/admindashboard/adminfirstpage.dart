@@ -1,4 +1,4 @@
-import 'package:collegeapp/views/designQuestionPaper.dart';
+import 'package:collegeapp/views/admindashboard/designQuestionPaper.dart';
 import 'package:flutter/material.dart';
 
 class Adminfirstpage extends StatefulWidget {
