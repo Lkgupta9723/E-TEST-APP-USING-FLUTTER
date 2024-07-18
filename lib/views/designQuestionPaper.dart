@@ -1,3 +1,4 @@
+import 'package:collegeapp/views/adminfirstpage.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -37,6 +38,17 @@ class _design_question_paperState extends State<design_question_paper> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) {
+                return const Adminfirstpage();
+              }), (route) => false);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white70,
+            )),
         title: const Center(
           child: Text(
             "Question paper details",
