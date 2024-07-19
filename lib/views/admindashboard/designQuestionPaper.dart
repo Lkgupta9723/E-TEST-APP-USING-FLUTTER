@@ -1,6 +1,8 @@
 import 'package:collegeapp/controllers/question_controller.dart';
 import 'package:collegeapp/views/admindashboard/adminfirstpage.dart';
+import 'package:collegeapp/views/admindashboard/questionPaperFilling.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -13,11 +15,10 @@ class design_question_paper extends StatefulWidget {
   State<design_question_paper> createState() => _design_question_paperState();
 }
 
-TextEditingController testName = TextEditingController();
-TextEditingController question_count = TextEditingController();
-
 class _design_question_paperState extends State<design_question_paper> {
   final QuestionController questionController = Get.put(QuestionController());
+
+  var get;
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +58,8 @@ class _design_question_paperState extends State<design_question_paper> {
             child: SizedBox(
               height: 44,
               child: TextField(
-                onChanged: (v) {
-                  setState(() {});
-                },
-                controller: testName,
+                onChanged: (v) {},
+                controller: questionController.testName,
                 style: const TextStyle(fontSize: 16),
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
@@ -83,10 +82,8 @@ class _design_question_paperState extends State<design_question_paper> {
             child: SizedBox(
               height: 44,
               child: TextField(
-                onChanged: (v) {
-                  setState(() {});
-                },
-                controller: question_count,
+                onChanged: (v) {},
+                controller: questionController.question_count,
                 style: const TextStyle(fontSize: 16),
                 cursorColor: Colors.grey,
                 decoration: InputDecoration(
@@ -200,7 +197,13 @@ class _design_question_paperState extends State<design_question_paper> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 30),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return const QuestionPapaerFilling();
+                    }),
+                  );
+                },
                 child: Container(
                   height: 50,
                   width: 250,
